@@ -12,10 +12,10 @@ if (isset($_POST)) {
     
 
     // Recoger los valores del Formulario
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : FALSE ;
-    $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos']: FALSE ;
-    $email = isset($_POST['email']) ? $_POST['email'] : FALSE;
-    $contrasenia = isset($_POST['password']) ? $_POST['password'] : FALSE;
+    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+    $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
+    $email = isset($_POST['email']) ? $_POST['email'] : false;
+    $password = isset($_POST['password']) ? $_POST['password'] : false;
     
     // Array de Errores
     $errores = array();
@@ -48,11 +48,11 @@ if (isset($_POST)) {
     }
 
     //  Validar el campo CONTRASEÑA
-    if (!empty($contrasenia) ){
+    if (!empty($password) ){
         $contrasenia_validado = TRUE;
     }  else {
         $contrasenia_validado = FALSE;
-        $errores['contrasenia'] = "La contraseña esta vacia";
+        $errores['password'] = "La contraseña esta vacia";
     }
     
     $guardar_usuario = false;
@@ -60,28 +60,42 @@ if (isset($_POST)) {
         $guardar_usuario = true;
 
         //  Cifrar la Contraseña
-        $contrasenia_segura = password_hash($contrasenia,PASSWORD_BCRYPT, ['cost'=>4]);
-//        var_dump($contrasenia);
-//        var_dump($contrasenia_segura);
-//        var_dump(password_verify($contrasenia, $contrasenia_segura));
-//        die();
-//        
-        // Insertar Registro en la Base de Datos
-        $sql = "INSERT INTO usuarios VALUES(null, '$nombre', '$apellidos', '$email', '$contrasenia_segura', CURDATE());";
-        $guardar = mysqli_query($db, $sql);
+        $password_segura = password_hash($password,PASSWORD_BCRYPT, ['cost'=>4]);
+        
+        //Insertar Registro en la Base de Datos
+        $sql = "INSERT INTO usuarios VALUES(null, '$nombre', '$apellidos', '$email', '$password_segura', CURDATE());";
+        $guardar = mysqli_query($bd , $sql  );
         if ($guardar){
             $_SESSION['completado'] = 'Usuario registrado con exito';
         }else{
             $_SESSION['errores']['general']= 'Fallo al guardar el Usuario';
         }
-        
-        
-        
     }else{
         $_SESSION['errores']= $errores;
         
     }
 }
-header('Location : index.php');
+//echo "<hr/>";
 //var_dump($_POST);
+//echo "<hr/>";
+//echo "<hr/>";
+//echo "$nombre";echo "<br/>";
+//echo "$apellidos";echo "<br/>";
+//echo "$email";echo "<br/>";
+//echo "$password";echo "<br/>";
+//echo "<hr/>";
 //var_dump($errores);
+//echo "<hr/>";
+//var_dump($guardar_usuario);
+//echo "<hr/>";
+//var_dump($password);echo "<br/>";
+//var_dump($password_segura);echo "<br/>";
+//var_dump(password_verify($password, $password_segura));echo "<br/>";
+//
+//echo "<hr/>";
+//var_dump($sql);echo "<br/>";
+//var_dump($bd);
+//var_dump($guardar);echo "<br/>";
+//die();
+
+header('Location: index.php'); 

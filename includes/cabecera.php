@@ -1,6 +1,6 @@
 <?php require_once 'conexion.php';?>
 <!DOCTYPE html>
-<html lang="es_AR">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/css/mistyle.css">
