@@ -12,10 +12,10 @@ if (isset($_POST)) {
     
 
     // Recoger los valores del Formulario
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-    $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
-    $email = isset($_POST['email']) ? $_POST['email'] : false;
-    $password = isset($_POST['password']) ? $_POST['password'] : false;
+    $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($bd, $_POST['nombre'])  : false;
+    $apellidos = isset($_POST['apellidos']) ? mysqli_real_escape_string($bd, $_POST['apellidos']) : false;
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($bd, trim($_POST['email'])) : false;
+    $password = isset($_POST['password']) ? mysqli_real_escape_string($bd, $_POST['password']) : false;
     
     // Array de Errores
     $errores = array();
