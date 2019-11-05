@@ -1,10 +1,16 @@
 <?php
 
+// Borrar error antiguo
+if(isset($_SESSION['error_login'])){
+  session_unset($_SESSION['error_login']);
+}
+
+
 if (isset($_POST)) {
-//      iniciar la sesion y la conexion de BD
+  //      iniciar la sesion y la conexion de BD
   require_once 'includes/conexion.php';
 
-// Iniciar sesión
+  // Iniciar sesión
   if(!isset($_SESSION)){
     session_start();
   }
@@ -22,12 +28,14 @@ if (isset($_POST)) {
     $verify = password_verify($password, $usuario['password']);
     
     if ($verify){
-      
+      $_SESSION['usuario']=$usuario;
     } else {
       //    Mensaje de Error por Contraseña Incorrecta
+      $_SESSION['error_login'] = 'Login incorrecto';
     }
   }else{
     //    Mensaje de Error por Email incorrecto
+    $_SESSION['error_login'] = 'Login incorrecto';
   }
   
 
@@ -43,21 +51,22 @@ if (isset($_POST)) {
 
 
 }
-echo "<hr/>";
-var_dump($_POST);
-echo "<hr/>";
-echo "$email";echo "<br/>";
-echo "$password";echo "<br/>";
-echo "<hr/>";
-var_dump($bd);echo "<br/>";
-echo "<hr/>";
-var_dump($sql);echo "<br/>";
-var_dump($login);echo "<br/>";
-echo "<hr/>";
-var_dump($usuario);echo "<br/>";
-var_dump($verify);
-die();
+//echo "<hr/>";
+//var_dump($_POST);
+//echo "<hr/>";
+//echo "$email";echo "<br/>";
+//echo "$password";echo "<br/>";
+//echo "<hr/>";
+//var_dump($bd);echo "<br/>";
+//echo "<hr/>";
+//var_dump($sql);echo "<br/>";
+//var_dump($login);echo "<br/>";
+//echo "<hr/>";
+//var_dump($usuario);echo "<br/>";
+//var_dump($verify);
+//die();
 
 
 
 //      Redigir al index
+header('Location: index.php');
