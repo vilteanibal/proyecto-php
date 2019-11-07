@@ -1,6 +1,8 @@
 <?php 
+      // Iniciar sesión
+  if(!isset($_SESSION)){
     session_start();
-    require_once 'includes/helpers.php'; 
+  }
 ?>
 
 
@@ -8,7 +10,12 @@
 <aside id="siderbar">
   <?php if (isset($_SESSION['usuario'])) : ?>
     <div id="usuario-logueado" class="bloque">
-    <h3> Bienvenido, <?=$_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellidos']; ?> </h3>
+      <h3> Bienvenido, <?=$_SESSION['usuario']['nombre'].' '.$_SESSION['usuario']['apellidos']; ?> </h3>
+      <!--    Agregamos algunos botones      -->
+      <a href="cerrar.php" class="boton boton-verde"> Crear Entradas</a>
+      <a href="cerrar.php" class="boton boton"> Crear Categorias</a>
+      <a href="cerrar.php" class="boton boton-naranja"> Mis Datos</a>
+      <a href="cerrar.php" class="boton boton-rojo"> Cerrar Sesion</a>
     </div>
   <?php endif; ?>
 

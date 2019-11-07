@@ -1,9 +1,6 @@
 <?php
 
-// Borrar error antiguo
-if(isset($_SESSION['error_login'])){
-  session_unset($_SESSION['error_login']);
-}
+
 
 
 if (isset($_POST)) {
@@ -13,6 +10,11 @@ if (isset($_POST)) {
   // Iniciar sesión
   if(!isset($_SESSION)){
     session_start();
+  }
+
+  // Borrar error antiguo
+  if(isset($_SESSION['error_login'])){
+    $_SESSION['error_login'] = null; 
   }
   //    Recoger los datos del Formulario
   $email = isset($_POST['email']) ? mysqli_real_escape_string($bd, trim($_POST['email'])) : false;
