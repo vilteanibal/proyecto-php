@@ -1,5 +1,10 @@
 <?php
 
+// Iniciar la sesión
+if(!isset($_SESSION)){
+	session_start();
+}  
+  
 // Conexion
 $servidor='localhost';
 $usuario='hannibal';
@@ -13,7 +18,4 @@ $bd=mysqli_connect($servidor,$usuario,$clave,$base_datos);
 #mysqli_query($mibd, "SET NAME 'UTF8'");
 mysqli_query($bd, "SET NAME 'UTF8' ");
 
-// Iniciar la sesión
-if(!isset($_SESSION)){
-	session_start();
-}
+$_SESSION['baseDatos']=$bd;

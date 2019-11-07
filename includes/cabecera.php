@@ -1,6 +1,6 @@
 <?php 
-  require_once 'includes/conexion.php';
-  require_once 'includes/helpers.php'; 
+  require_once 'conexion.php';
+  require_once 'helpers.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,7 +23,10 @@
       <ul>
 	<li><a href="index.php">Inicio</a></li>
 
-	  <?php $categorias = conseguirCategorias($bd); ?>
+	  <?php 
+	    $bd = $_SESSION['baseDatos'];
+	    $categorias = conseguirCategoria ($bd); 
+	  ?>
 	  <?php while ($categoria = mysqli_fetch_assoc($categorias)) : ?>
 	    <li><a href="categoria.php?id=<?=$categoria['id']?>"> <?= $categoria['nombre'] ?> </a></li>
 	  <?php endwhile; ?>
