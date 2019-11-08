@@ -30,7 +30,7 @@ function conseguirCategorias($conexion) {
   $categorias = mysqli_query($conexion, $sql);
   $resultado = array ();
   
-  if ($categorias && mysqli_num_rows($categorias >= 1)){
+  if ($categorias && mysqli_num_rows($categorias) >= 1 ){
     $resultado = $categorias;
   }
   return $resultado;
