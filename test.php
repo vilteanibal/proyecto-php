@@ -30,3 +30,14 @@ if (!empty($ncategorias)){
         var_dump($categorias);
     }
 }
+
+
+echo "<hr/>";
+$entradas = conseguirEntradas($bd);
+
+if (!empty($entradas) ) :
+    while ($entrada = mysqli_fetch_assoc($entradas)) :
+        echo "<br/>";
+        var_dump($entrada);
+    endwhile;
+endif;
