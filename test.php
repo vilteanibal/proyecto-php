@@ -9,18 +9,9 @@ if(!isset($_SESSION)){
 
 $categorias = conseguirCategorias($bd);
 
-var_dump($bd);
-echo "<hr/>";
-echo "<h3>".
-var_dump($categorias)."</h3>";
-
-echo "<hr/>";
-if (empty($categorias) && mysqli_num_rows($categorias) == 0 ){
-    echo "categorias vacias";
-    echo mysqli_num_rows($categorias);
-}else{
-    echo 'con valores';
+if (!empty($categorias) ){
     while ($categoria = mysqli_fetch_assoc($categorias)) {
+        echo "<br/>";
         var_dump($categoria);
     }
 }
@@ -32,4 +23,10 @@ var_dump($mibaseDatos);
 echo "<hr/>";
 $ncategorias = conseguirCategorias($mibaseDatos);
 var_dump($ncategorias);
-    
+
+if (!empty($ncategorias)){
+    while ($categoria = mysqli_fetch_assoc($ncategorias)) {
+        echo "<br/>";
+        var_dump($categorias);
+    }
+}

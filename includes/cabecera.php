@@ -1,5 +1,11 @@
 <?php require_once 'conexion.php'; ?>
 <?php  require_once 'helpers.php'; ?>
+<?php 
+    if(!isset($_SESSION)){
+        session_start();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -22,16 +28,14 @@
 	<li><a href="index.php">Inicio</a></li>
 
 	  <?php 
-	    //$bd = $_SESSION['baseDatos'];
-            //var_dump($bd);
-	    $categorias = conseguirCategoria ($bd); 
-            //var_dump($miscategorias);
-	      if(!empty($categorias)):
-                while ($categoria = mysqli_fetch_assoc($categorias)) : 
+	    $categorias = conseguirCategorias($bd);
+	    if (!empty($categorias) ):
+              while ($categoria = mysqli_fetch_assoc($categorias)) : 
           ?>
-                  <li><a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a></li>
-	  <?php endwhile; 
-              endif; 
+              <li><a href="categoria.php?id=<?=$categoria['id']?>"><?=$categoria['nombre']?></a></li>
+	  <?php 
+              endwhile; 
+            endif; 
           ?>
 
 	<li><a href="sobremi.php">Sobre Mi</a></li>
