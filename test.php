@@ -1,5 +1,9 @@
 
-<?php
+
+
+
+  
+ <?php
 
 require_once 'includes/conexion.php';
 require_once 'includes/helpers.php';
@@ -24,12 +28,12 @@ echo "<hr/>";
 $ncategorias = conseguirCategorias($mibaseDatos);
 var_dump($ncategorias);
 
-if (!empty($ncategorias)){
-    while ($categoria = mysqli_fetch_assoc($ncategorias)) {
+if (!empty($ncategorias)) :
+    while ($categoria = mysqli_fetch_assoc($ncategorias)) :
         echo "<br/>";
         var_dump($categorias);
-    }
-}
+      endwhile;
+endif;
 
 
 echo "<hr/>";
@@ -41,3 +45,30 @@ if (!empty($entradas) ) :
         var_dump($entrada);
     endwhile;
 endif;
+
+
+
+?>
+
+
+
+<form name="pruebita" method="POST" enctype="multipart/form-data">
+
+<?php
+  $categorias = conseguirCategorias($bd);
+  if (!empty($ncategorias)) :
+        while ($categoria = mysqli_fetch_assoc($ncategorias)) :
+?>
+          <select name="categorias">
+              <option value="$categorias['id']">
+                  $categorias['nombre'];
+            </option>
+            </select>
+
+<?php
+        endwhile;
+  endif;
+?>
+
+
+</form>       
