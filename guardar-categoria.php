@@ -34,4 +34,8 @@ if (isset($_POST)){
   }else{
     $_SESSION['errores']= $errores;
   }
-}
+
+  
+  }
+  
+  header("Location: index.php");
